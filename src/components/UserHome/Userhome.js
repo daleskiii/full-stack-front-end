@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import Nav from "../Nav/Nav";
-
+import { useParams, Link } from "react-router-dom";
+import Orders from "../Oders/Orders";
+import "./UserHome.css";
 function Userhome() {
   const [userData, setUserData] = useState([]);
   const { id } = useParams();
@@ -18,11 +18,17 @@ function Userhome() {
     };
     fetchUserData();
   }, [id]);
-
   return (
-    <>
-      <div>hey {userData.username}, welcome back to your shopping account </div>
-    </>
+    <div className="user-home-container">
+      <h1>My Account</h1>
+      <Link to={`/edit/${id}`} className="edit-link">
+        Edit
+      </Link>
+      <div>Hey {userData.username}, welcome back to your shopping account</div>
+      <div>
+        <Orders />
+      </div>
+    </div>
   );
 }
 

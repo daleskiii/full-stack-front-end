@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
       setUserId(storedUserId);
       setLoggedIn(true);
     }
-  }, []);
+  }, [userId, isLoggedIn]);
   useEffect(() => {
     if (userId) {
       localStorage.setItem("userId", userId);
