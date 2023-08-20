@@ -1,0 +1,19 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(10px, 1fr));
+  gap: 20px 20px;
+}
+
+.product-cell {
+  text-align: center;
+  border: 2px solid black;
+}
+
+.product-image {
+  max-width: 50%;
+  height: auto;
+}
+
+.product-details {
+  margin-top: 10px;
+}
