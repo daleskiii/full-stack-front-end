@@ -1,8 +1,24 @@
 .user-home-container {
   padding: 20px;
+  text-align: center;
 }
 
 .edit-link {
   float: right;
   margin-right: 20px;
+}
+
+@media (max-width: 768px) {
+  .edit-link {
+    float: none;
+    margin-right: 0;
+    display: block;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .user-home-container {
+    padding: 10px;
+  }
 }

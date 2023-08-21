@@ -13,7 +13,7 @@ function Login() {
   const fetchUserData = async () => {
     try {
       const password_hash = password;
-      const result = await axios.post("http://localhost:3006/user/login", {
+      const result = await axios.post(`http://localhost:3006/user/login`, {
         username,
         password_hash,
       });
@@ -37,7 +37,6 @@ function Login() {
 
   return (
     <div>
-      <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <input
           type="text"

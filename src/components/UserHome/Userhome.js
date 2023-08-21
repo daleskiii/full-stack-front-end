@@ -24,7 +24,12 @@ function Userhome() {
       <Link to={`/edit/${id}`} className="edit-link">
         Edit
       </Link>
-      <div>Hey {userData.username}, welcome back to your shopping account</div>
+      <div>
+        <p>
+          Hey <strong>{userData.username}</strong>, welcome back to your
+          shopping account
+        </p>
+      </div>
       <div>
         <Orders />
       </div>

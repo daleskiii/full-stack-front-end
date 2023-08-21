@@ -2,6 +2,72 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f8f9fa;
-  padding: 40px 20px;
+  background-color: #0c4177;
+  padding: 20px;
+}
+
+.custom-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: none;
+}
+
+.custom-nav a:last-child {
+  margin-right: 0;
+}
+
+.custom-nav a:hover {
+  color: #ffcc00;
+  text-decoration: none;
+}
+
+.custom-nav a:active,
+.custom-nav a:focus {
+  outline: none;
+}
+
+.custom-nav img {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
+
+.custom-nav button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .custom-nav {
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+  }
+
+  .custom-nav a {
+    margin: 5px 0;
+  }
+
+  .custom-nav img {
+    margin: 0;
+  }
+
+  .custom-nav span {
+    margin: 0;
+  }
+
+  .custom-nav button {
+    margin-top: 20px;
+    width: 100%;
+  }
 }

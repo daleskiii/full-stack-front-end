@@ -6,8 +6,11 @@ import SignUp from "./components/Sign-up/SignUp";
 import Userhome from "./components/UserHome/Userhome";
 import Products from "./components/Products/Products";
 import Edit from "./components/Edit/Edit";
+import Orders from "./components/Oders/Orders";
+import ProductView from "./components/Products/ProductView";
 import { AuthProvider } from "./components/Context/AuthContext";
 import { CartProvider } from "./components/Context/CartContext";
+
 // style import
 import "./App.css";
 
@@ -38,10 +41,26 @@ function App() {
             }
           />
           <Route
+            path="/products/:id"
+            element={
+              <CartProvider>
+                <ProductView />
+              </CartProvider>
+            }
+          />
+          <Route
             path="/edit/:id"
             element={
               <CartProvider>
                 <Edit />
+              </CartProvider>
+            }
+          />
+          <Route
+            path="/orders/:id"
+            element={
+              <CartProvider>
+                <Orders />
               </CartProvider>
             }
           />

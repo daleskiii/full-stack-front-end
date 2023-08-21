@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./Products.css";
+import { useParams } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
 import { useAuth } from "../Context/AuthContext";
-import { Link } from "react-router-dom";
+import "./ProductView.css";
 
-function Products() {
+function ProductView() {
+  const { id } = useParams();
   const [data, setData] = useState([]);
   const { cartItems, setCartItems } = useCart();
   const { userId } = useAuth();
-
   useEffect(() => {
     const fetchProductsData = async () => {
-      const result = await axios.get("http://localhost:3006/products");
+      const result = await axios.get(`http://localhost:3006/products/${id}`);
       setData(result.data);
     };
     fetchProductsData();
-  }, []);
-
-  useEffect(() => {
-    console.log(cartItems);
-  }, [cartItems]);
-
+  }, [id]);
   const addToCart = async (product) => {
     const existingItem = cartItems.find((item) => item.id === product.id);
 
@@ -51,27 +46,27 @@ function Products() {
       }
     }
   };
-
   return (
-    <div className="product-grid">
-      {data.map((i) => (
-        <div key={i.id} className="product-cell">
-          <Link to={`/products/${i.id}`}>
-            <img
-              className="product-image"
-              src={i.image_url}
-              alt={`Product ${i.id}`}
-            />
-            <h4 className="product-details">{i.name}</h4>
-          </Link>
+    <div className="product-view-container">
+      <div className="product-details">
+        <h1 className="product-name">{data.name}</h1>
+        <img
+          className="product-image"
+          src={data.image_url}
+          alt={`Product ${data.id}`}
+        />
+      </div>
+      <div className="product-description">
+        <p>{data.description}</p>
+        <p> THC%: {data.thc_content}</p>
+        <p>CBD: {data.cbd_content ? "true" : "false"}</p>
+      </div>
 
-          <p> ${i.price} / 3.5g</p>
-
-          <button onClick={() => addToCart(i)}>add to cart</button>
-        </div>
-      ))}
+      <button onClick={() => addToCart(data)} className="add-to-cart-button">
+        ADD TO CART ${data.price}
+      </button>
     </div>
   );
 }
 
-export default Products;
+export default ProductView;
