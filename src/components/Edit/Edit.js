@@ -12,7 +12,20 @@ function Edit() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(id);
+
+    if (!username) {
+      alert("Username is required");
+      return;
+    }
+    if (!password_hash) {
+      alert("Password is required");
+      return;
+    }
+    if (password_hash.length < 6) {
+      alert("Password must be at least 6 characters long");
+      return;
+    }
+
     try {
       const updated = await axios.put(`http://localhost:3006/user/${id}`, {
         username,

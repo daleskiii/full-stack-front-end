@@ -11,6 +11,18 @@ function Login() {
   const nav = useNavigate();
 
   const fetchUserData = async () => {
+    if (!username) {
+      alert("Username is required");
+      return;
+    }
+    if (!password) {
+      alert("Password is required");
+      return;
+    }
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters long");
+      return;
+    }
     try {
       const password_hash = password;
       const result = await axios.post(`http://localhost:3006/user/login`, {
@@ -21,6 +33,7 @@ function Login() {
       const { user } = result.data;
       const { id } = user;
       setUserId(id);
+      setLoggedIn(true);
       nav(`/user-dash/${id}`);
     } catch (e) {
       alert("incorrect password");
@@ -32,7 +45,6 @@ function Login() {
     e.preventDefault();
 
     fetchUserData();
-    setLoggedIn(true);
   };
 
   return (
