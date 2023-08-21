@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
@@ -48,7 +48,8 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="login-container">
+      <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <input
           type="text"

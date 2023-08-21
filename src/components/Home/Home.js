@@ -18,7 +18,6 @@ function Home() {
       ) : (
         <div className="auth-container">
           <div className="auth-component">
-            <h1>Login</h1>
             <Login />
           </div>
           <div className="auth-component">
