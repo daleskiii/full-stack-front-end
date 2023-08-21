@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Orders.css";
-
+import { getOrderByUser } from "../API/API";
 import { useAuth } from "../Context/AuthContext";
 function Orders() {
   const [data, setData] = useState([]);
@@ -12,9 +12,12 @@ function Orders() {
     const fetchData = async () => {
       try {
         if (userId) {
-          const response = await axios.get(
-            `http://localhost:3006/user/orders/${userId}`
-          );
+          // const response = await axios.get(
+          //   `http://localhost:3006/user/orders/${userId}`
+          // );
+
+          const response = await getOrderByUser(userId);
+
           setData(response.data);
         }
       } catch (error) {

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import "./Nav.css";
-
+import { getUser } from "../API/API";
 function Nav() {
   const [userData, setUserData] = useState([]);
   const { isLoggedIn, setLoggedIn, userId, setUserId } = useAuth();
@@ -14,9 +14,11 @@ function Nav() {
     if (isLoggedIn && userId) {
       const fetchUserData = async () => {
         try {
-          const response = await axios.get(
-            `http://localhost:3006/user/${userId}`
-          );
+          // const response = await axios.get(
+          //   `http://localhost:3006/user/${userId}`
+          // );
+
+          const response = await getUser(userId);
 
           setUserData(response.data.id);
         } catch (error) {

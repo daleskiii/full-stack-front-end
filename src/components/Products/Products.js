@@ -4,6 +4,7 @@ import "./Products.css";
 import { useCart } from "../Context/CartContext";
 import { useAuth } from "../Context/AuthContext";
 import { Link } from "react-router-dom";
+import { getProducts } from "../API/API";
 
 function Products() {
   const [data, setData] = useState([]);
@@ -12,7 +13,7 @@ function Products() {
 
   useEffect(() => {
     const fetchProductsData = async () => {
-      const result = await axios.get("http://localhost:3006/products");
+      const result = await getProducts();
       setData(result.data);
     };
     fetchProductsData();

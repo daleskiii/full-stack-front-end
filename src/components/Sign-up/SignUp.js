@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
+import { signUp } from "../API/API";
 const SignUp = () => {
   const [username, setUserName] = useState("");
   const [password_hash, setPassword] = useState("");
@@ -20,7 +21,7 @@ const SignUp = () => {
 
     try {
       const data = { username, password_hash };
-      const result = await axios.post(`http://localhost:3006/user`, data);
+      const result = await signUp(data);
       console.log(result);
       setUserName("");
       setPassword("");

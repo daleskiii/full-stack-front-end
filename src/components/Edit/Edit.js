@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
-
+import { editUser, deleteUser } from "../API/API";
 function Edit() {
   const [username, setUserName] = useState("");
   const [password_hash, setPassword] = useState("");
@@ -27,10 +27,17 @@ function Edit() {
     }
 
     try {
-      const updated = await axios.put(`http://localhost:3006/user/${id}`, {
-        username,
-        password_hash,
-      });
+      // const updated = await axios.put(`http://localhost:3006/user/${id}`, {
+      //   username,
+      //   password_hash,
+      // });
+      const updatedUserData = {
+        username: username,
+        password_hash: password_hash,
+      };
+
+      const updated = await editUser(id, updatedUserData);
+
       setUserId(id);
       nav(`/user-dash/${id}`);
       console.log(updated);
@@ -42,8 +49,7 @@ function Edit() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3006/user/${id}/`);
-
+      await deleteUser(id);
       setLoggedIn(false);
       setUserId(null);
       localStorage.removeItem("userId");
