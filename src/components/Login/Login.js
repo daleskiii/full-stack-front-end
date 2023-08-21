@@ -30,7 +30,7 @@ function Login() {
       //   password_hash,
       // });
 
-      const result = login(password_hash, username);
+      const result = await login({ username, password_hash });
 
       console.log(result.data.user);
       const { user } = result.data;

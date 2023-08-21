@@ -20,9 +20,9 @@ async function getProductById(id) {
   }
 }
 
-async function login() {
+async function login(data) {
   try {
-    let result = await Axios.post("/user/login");
+    let result = await Axios.post("/user/login", data);
 
     return result;
   } catch (e) {
