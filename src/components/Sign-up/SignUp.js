@@ -28,6 +28,7 @@ const SignUp = () => {
     } catch (e) {
       console.log(e);
     }
+    return false;
   };
 
   return (
@@ -49,7 +50,7 @@ const SignUp = () => {
           * Your personal data will be used to support your experience
           throughout this website, to manage access to your account.
         </p>
-        <button>Sign Up</button>
+        <button type="submit">Sign Up</button>
       </form>
     </div>
   );
