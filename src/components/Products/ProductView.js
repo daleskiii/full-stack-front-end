@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import { useParams } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
 import { useAuth } from "../Context/AuthContext";
 import "./ProductView.css";
+import { productView, getProductById } from "../API/API";
 
 function ProductView() {
   const { id } = useParams();
@@ -12,7 +13,10 @@ function ProductView() {
   const { userId } = useAuth();
   useEffect(() => {
     const fetchProductsData = async () => {
-      const result = await axios.get(`http://localhost:3006/products/${id}`);
+      //   const result = await axios.get(`http://localhost:3006/products/${id}`);
+
+      const result = await getProductById(id);
+
       setData(result.data);
     };
     fetchProductsData();
@@ -27,13 +31,15 @@ function ProductView() {
       setCartItems(updatedCart);
     } else {
       try {
-        const response = await axios.post(
-          `http://localhost:3006/user/${userId}/orders`,
-          {
-            product_id: product.id,
-            user_id: userId,
-          }
-        );
+        // const response = await axios.post(
+        //   `http://localhost:3006/user/${userId}/orders`,
+        //   {
+        //     product_id: product.id,
+        //     user_id: userId,
+        //   }
+
+        // );
+        const response = await productView(product.id, userId);
 
         if (response.data.message === "product was added") {
           setCartItems((prevItems) => [

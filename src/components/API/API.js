@@ -10,6 +10,16 @@ async function getProducts() {
   }
 }
 
+async function getProductById(id) {
+  try {
+    let result = await Axios.get(`/products/${id}`);
+
+    return result;
+  } catch (e) {
+    return e;
+  }
+}
+
 async function login() {
   try {
     let result = await Axios.post("/user/login");
@@ -66,7 +76,14 @@ async function deleteUser(id) {
     console.log(e);
   }
 }
-
+async function productView(id, product_id) {
+  try {
+    let result = await Axios.post(`/user/${id}/orders`, product_id);
+    return result;
+  } catch (e) {
+    console.log(e);
+  }
+}
 export {
   getProducts,
   login,
@@ -75,4 +92,6 @@ export {
   getOrderByUser,
   editUser,
   deleteUser,
+  productView,
+  getProductById,
 };
