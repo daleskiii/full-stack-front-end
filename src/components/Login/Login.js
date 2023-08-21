@@ -3,7 +3,7 @@ import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
-
+import { login } from "../API/API";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -25,10 +25,13 @@ function Login() {
     }
     try {
       const password_hash = password;
-      const result = await axios.post(`http://localhost:3006/user/login`, {
-        username,
-        password_hash,
-      });
+      // const result = await axios.post(`http://localhost:3006/user/login`, {
+      //   username,
+      //   password_hash,
+      // });
+
+      const result = login(password_hash, username);
+
       console.log(result.data.user);
       const { user } = result.data;
       const { id } = user;
