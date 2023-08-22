@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import "./Orders.css";
 import { getOrderByUser, deleteOder } from "../API/API";
 import { useAuth } from "../Context/AuthContext";
