@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 import { useAuth } from "../Context/AuthContext";
 import { login } from "../API/API";
 function Login() {
@@ -39,6 +39,7 @@ function Login() {
       setLoggedIn(true);
       nav(`/user-dash/${id}`);
     } catch (e) {
+      // throw e;
       alert("incorrect password");
       console.log(e);
     }
@@ -56,13 +57,13 @@ function Login() {
       <form onSubmit={handleLogin}>
         <input
           type="text"
-          placeholder="Username"
+          placeholder="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
