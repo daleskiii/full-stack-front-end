@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Orders.css";
-import { getOrderByUser } from "../API/API";
+import { getOrderByUser, deleteOder } from "../API/API";
 import { useAuth } from "../Context/AuthContext";
 function Orders() {
   const [data, setData] = useState([]);
@@ -38,8 +38,8 @@ function Orders() {
 
   const removeFromCart = async (orderId) => {
     try {
-      await axios.delete(`http://localhost:3006/user/orders/${orderId}`);
-
+      // await axios.delete(`http://localhost:3006/user/orders/${orderId}`);
+      await deleteOder(orderId);
       const updatedData = data.filter((order) => order.order_id !== orderId);
       setData(updatedData);
     } catch (e) {

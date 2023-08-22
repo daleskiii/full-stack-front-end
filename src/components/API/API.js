@@ -99,6 +99,15 @@ async function addToCartCall(id, product_id) {
   }
 }
 
+async function deleteOder(id) {
+  try {
+    let result = await Axios.delete(`/user/orders/${id}`);
+    return result;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export {
   getProducts,
   login,
@@ -110,4 +119,5 @@ export {
   productView,
   getProductById,
   addToCartCall,
+  deleteOder,
 };
