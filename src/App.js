@@ -8,63 +8,116 @@ import Products from "./components/Products/Products";
 import Edit from "./components/Edit/Edit";
 import Orders from "./components/Oders/Orders";
 import ProductView from "./components/Products/ProductView";
-import { AuthProvider } from "./components/Context/AuthContext";
+import { AuthProvider, useAuth } from "./components/Context/AuthContext";
 import { CartProvider } from "./components/Context/CartContext";
 
 // style import
 import "./App.css";
 
 function App() {
+  const { isLoggedIn, userId } = useAuth();
+
   return (
     <AuthProvider>
       <Router>
         <Nav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/sign-up" element={<SignUp />} />
 
-          <Route
-            path="/user-dash/:id"
-            element={
-              <CartProvider>
-                <Userhome />
-              </CartProvider>
-            }
-          />
-          <Route
-            path="/products"
-            element={
-              <CartProvider>
-                <Products />
-              </CartProvider>
-            }
-          />
-          <Route
-            path="/products/:id"
-            element={
-              <CartProvider>
-                <ProductView />
-              </CartProvider>
-            }
-          />
-          <Route
-            path="/edit/:id"
-            element={
-              <CartProvider>
-                <Edit />
-              </CartProvider>
-            }
-          />
-          <Route
-            path="/orders/:id"
-            element={
-              <CartProvider>
-                <Orders />
-              </CartProvider>
-            }
-          />
-        </Routes>
+        {isLoggedIn && userId ? (
+          <Routes>
+            <Route path="/user-dash/:id" element={<Userhome />} />
+
+            <Route path="/login" element={<Login />} />
+            <Route path="/sign-up" element={<SignUp />} />
+
+            <Route
+              path="/user-dash/:id"
+              element={
+                <CartProvider>
+                  <Userhome />
+                </CartProvider>
+              }
+            />
+            <Route
+              path="/products"
+              element={
+                <CartProvider>
+                  <Products />
+                </CartProvider>
+              }
+            />
+            <Route
+              path="/products/:id"
+              element={
+                <CartProvider>
+                  <ProductView />
+                </CartProvider>
+              }
+            />
+            <Route
+              path="/edit/:id"
+              element={
+                <CartProvider>
+                  <Edit />
+                </CartProvider>
+              }
+            />
+            <Route
+              path="/orders/:id"
+              element={
+                <CartProvider>
+                  <Orders />
+                </CartProvider>
+              }
+            />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/sign-up" element={<SignUp />} />
+
+            <Route
+              path="/user-dash/:id"
+              element={
+                <CartProvider>
+                  <Userhome />
+                </CartProvider>
+              }
+            />
+            <Route
+              path="/products"
+              element={
+                <CartProvider>
+                  <Products />
+                </CartProvider>
+              }
+            />
+            <Route
+              path="/products/:id"
+              element={
+                <CartProvider>
+                  <ProductView />
+                </CartProvider>
+              }
+            />
+            <Route
+              path="/edit/:id"
+              element={
+                <CartProvider>
+                  <Edit />
+                </CartProvider>
+              }
+            />
+            <Route
+              path="/orders/:id"
+              element={
+                <CartProvider>
+                  <Orders />
+                </CartProvider>
+              }
+            />
+          </Routes>
+        )}
       </Router>
     </AuthProvider>
   );
