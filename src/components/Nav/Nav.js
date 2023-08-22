@@ -25,6 +25,13 @@ function Nav() {
           console.log(error);
         }
       };
+
+      const storedUserId = localStorage.getItem("userId");
+      if (storedUserId) {
+        setLoggedIn(true);
+        setUserId(storedUserId);
+      }
+
       fetchUserData();
     }
   }, [isLoggedIn, userId, setLoggedIn, setUserId]);
