@@ -19,9 +19,9 @@ function Products() {
     fetchProductsData();
   }, []);
 
-  useEffect(() => {
-    console.log(cartItems);
-  }, [cartItems]);
+  // useEffect(() => {
+  //   console.log(cartItems);
+  // }, [cartItems]);
 
   const addToCart = async (product) => {
     const existingItem = cartItems.find((item) => item.id === product.id);

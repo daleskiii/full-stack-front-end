@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
     if (userId) {
       localStorage.setItem("userId", userId);
     }
-  }, [userId]);
+  }, [userId, isLoggedIn]);
 
   return (
     <AuthContext.Provider
