@@ -78,7 +78,10 @@ async function deleteUser(id) {
 }
 async function productView(id, product_id) {
   try {
-    let result = await Axios.post(`/user/${id}/orders`, product_id);
+    let result = await Axios.post(`/user/${id}/orders`, {
+      user_id: id,
+      product_id: product_id,
+    });
     return result;
   } catch (e) {
     console.log(e);
@@ -86,12 +89,16 @@ async function productView(id, product_id) {
 }
 async function addToCartCall(id, product_id) {
   try {
-    let result = await Axios.post(`/user/${id}/orders`, product_id);
+    let result = await Axios.post(`/user/${id}/orders`, {
+      user_id: id,
+      product_id: product_id,
+    });
     return result;
   } catch (e) {
     console.log(e);
   }
 }
+
 export {
   getProducts,
   login,

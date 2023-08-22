@@ -27,8 +27,8 @@ function Products() {
     const existingItem = cartItems.find((item) => item.id === product.id);
 
     if (existingItem) {
-      const updatedCart = cartItems.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      const updatedCart = cartItems.map(
+        (item) => item.id === product.id ?? item
       );
       setCartItems(updatedCart);
     } else {
@@ -40,8 +40,9 @@ function Products() {
         //     user_id: userId,
         //   }
         // );
-        const response = await addToCartCall(product.id, userId);
+        const response = await addToCartCall(userId, product.id);
 
+        // add quantity functionality for later
         if (response.data.message === "product was added") {
           setCartItems((prevItems) => [
             ...prevItems,

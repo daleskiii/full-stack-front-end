@@ -39,7 +39,7 @@ function ProductView() {
         //   }
 
         // );
-        const response = await productView(product.id, userId);
+        const response = await productView(userId, product.id);
 
         if (response.data.message === "product was added") {
           setCartItems((prevItems) => [
