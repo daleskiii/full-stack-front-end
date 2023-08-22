@@ -40,10 +40,7 @@ function Products() {
         //     user_id: userId,
         //   }
         // );
-        const response = await addToCartCall({
-          product_id: product.id,
-          user_id: userId,
-        });
+        const response = await addToCartCall(product.id, userId);
 
         if (response.data.message === "product was added") {
           setCartItems((prevItems) => [
