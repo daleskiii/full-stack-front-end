@@ -4,7 +4,7 @@ import "./Products.css";
 import { useCart } from "../Context/CartContext";
 import { useAuth } from "../Context/AuthContext";
 import { Link } from "react-router-dom";
-import { getProducts } from "../API/API";
+import { getProducts, addToCart } from "../API/API";
 
 function Products() {
   const [data, setData] = useState([]);
@@ -33,13 +33,17 @@ function Products() {
       setCartItems(updatedCart);
     } else {
       try {
-        const response = await axios.post(
-          `http://localhost:3006/user/${userId}/orders`,
-          {
-            product_id: product.id,
-            user_id: userId,
-          }
-        );
+        // const response = await axios.post(
+        //   `http://localhost:3006/user/${userId}/orders`,
+        //   {
+        //     product_id: product.id,
+        //     user_id: userId,
+        //   }
+        // );
+        const response = await addToCart({
+          product_id: product.id,
+          user_id: userId,
+        });
 
         if (response.data.message === "product was added") {
           setCartItems((prevItems) => [
