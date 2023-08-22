@@ -4,7 +4,7 @@ import "./Products.css";
 import { useCart } from "../Context/CartContext";
 import { useAuth } from "../Context/AuthContext";
 import { Link } from "react-router-dom";
-import { getProducts, addToCart } from "../API/API";
+import { getProducts, addToCartCall } from "../API/API";
 
 function Products() {
   const [data, setData] = useState([]);
@@ -40,7 +40,7 @@ function Products() {
         //     user_id: userId,
         //   }
         // );
-        const response = await addToCart({
+        const response = await addToCartCall({
           product_id: product.id,
           user_id: userId,
         });

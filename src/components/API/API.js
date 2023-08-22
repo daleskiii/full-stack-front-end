@@ -84,7 +84,7 @@ async function productView(id, product_id) {
     console.log(e);
   }
 }
-async function addToCart(id, product_id) {
+async function addToCartCall(id, product_id) {
   try {
     let result = await Axios.post(`/user/${id}/orders`, product_id);
     return result;
@@ -102,5 +102,5 @@ export {
   deleteUser,
   productView,
   getProductById,
-  addToCart,
+  addToCartCall,
 };
