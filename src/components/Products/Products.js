@@ -27,6 +27,7 @@ function Products() {
     const existingItem = cartItems.find((item) => item.id === product.id);
 
     if (existingItem) {
+      console.log("existing cart");
       const updatedCart = cartItems.map(
         (item) => item.id === product.id ?? item
       );

@@ -17,7 +17,7 @@ function Orders() {
           // );
 
           const response = await getOrderByUser(userId);
-
+          console.log(response.data);
           setData(response.data);
         }
       } catch (error) {
@@ -27,10 +27,11 @@ function Orders() {
 
     fetchData();
   }, [userId]);
+  // get the current total
 
   useEffect(() => {
     const calculatedTotal = data.reduce(
-      (acc, order) => acc + order.product_price,
+      (acc, order) => acc + order.product_price * order.order_quantity,
       0
     );
     setCurrentTotal(calculatedTotal);
@@ -46,6 +47,11 @@ function Orders() {
       console.log(e);
     }
   };
+  // checking product quantities
+  // const countQuantity = (data, productName) => {
+  //   const quantity = data.filter((order) => order.product_name === productName);
+  //   return quantity.length;
+  // };
 
   return (
     <div className="cart-grid">
@@ -56,6 +62,7 @@ function Orders() {
       {data.map((order) => (
         <div key={order.order_id} className="cart-item">
           <p>Product: {order.product_name}</p>
+          <p>Quantity:{order.order_quantity} </p>
           <p>Price: $ {order.product_price}</p>
           <button onClick={() => removeFromCart(order.order_id)}>
             Remove item from cart
