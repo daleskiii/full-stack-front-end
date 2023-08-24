@@ -17,56 +17,23 @@ import "./App.css";
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Nav />
+      <CartProvider>
+        <Router>
+          <Nav />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/sign-up" element={<SignUp />} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/sign-up" element={<SignUp />} />
 
-          <Route
-            path="/user-dash/:id"
-            element={
-              <CartProvider>
-                <Userhome />
-              </CartProvider>
-            }
-          />
-          <Route
-            path="/products"
-            element={
-              <CartProvider>
-                <Products />
-              </CartProvider>
-            }
-          />
-          <Route
-            path="/products/:id"
-            element={
-              <CartProvider>
-                <ProductView />
-              </CartProvider>
-            }
-          />
-          <Route
-            path="/edit/:id"
-            element={
-              <CartProvider>
-                <Edit />
-              </CartProvider>
-            }
-          />
-          <Route
-            path="/orders/:id"
-            element={
-              <CartProvider>
-                <Orders />
-              </CartProvider>
-            }
-          />
-        </Routes>
-      </Router>
+            <Route path="/user-dash/:id" element={<Userhome />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:id" element={<ProductView />} />
+            <Route path="/edit/:id" element={<Edit />} />
+            <Route path="/orders/:id" element={<Orders />} />
+          </Routes>
+        </Router>
+      </CartProvider>
     </AuthProvider>
   );
 }

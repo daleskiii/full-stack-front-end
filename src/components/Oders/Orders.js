@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import "./Orders.css";
 import { getOrderByUser, deleteOder } from "../API/API";
 import { useAuth } from "../Context/AuthContext";
+import { useCart } from "../Context/CartContext";
+
 function Orders() {
   const [data, setData] = useState([]);
   const [currentTotal, setCurrentTotal] = useState(0);
-
+  const { setCartQuant, cartQuant } = useCart();
   const { userId } = useAuth();
   useEffect(() => {
     const fetchData = async () => {
@@ -17,8 +19,22 @@ function Orders() {
           // );
 
           const response = await getOrderByUser(userId);
-          console.log(response.data);
+          // console.log(response.data);
           setData(response.data);
+          // console.log(response.data);
+          // const quantity = response.data.order_quantity;
+          // console.log(quantity);
+
+          const quantity = response.data.map((i) => i.order_quantity);
+          console.log(quantity);
+          const calaculatedQuantity = quantity.reduce(
+            (acc, order) => order + acc,
+            0
+          );
+          // console.log(calaculatedQuantity);
+
+          setCartQuant(calaculatedQuantity);
+          console.log(cartQuant);
         }
       } catch (error) {
         console.error("Error fetching orders:");
@@ -26,7 +42,7 @@ function Orders() {
     };
 
     fetchData();
-  }, [userId]);
+  }, [userId, setCartQuant, cartQuant]);
   // get the current total
 
   useEffect(() => {

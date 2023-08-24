@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
+import { useCart } from "../Context/CartContext";
 import "./Nav.css";
 import { getUser } from "../API/API";
 function Nav() {
   const [userData, setUserData] = useState([]);
   const { isLoggedIn, setLoggedIn, userId, setUserId } = useAuth();
-
+  const { cartQuant } = useCart();
   const nav = useNavigate();
 
   useEffect(() => {
@@ -28,7 +29,7 @@ function Nav() {
 
       fetchUserData();
     }
-  }, [isLoggedIn, userId, setLoggedIn, setUserId]);
+  }, [isLoggedIn, userId, setLoggedIn, setUserId, cartQuant]);
 
   const handleSignOut = () => {
     localStorage.removeItem("userId");
@@ -48,6 +49,7 @@ function Nav() {
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT334f4FXHxNX-2ekYY_X6W_tr5gpKIluZPQg&usqp=CAU"
               alt="Cart"
             />
+            {cartQuant}
           </Link>
           <button onClick={handleSignOut}>Sign Out</button>
         </>
