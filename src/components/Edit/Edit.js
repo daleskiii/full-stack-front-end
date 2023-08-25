@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./Edit.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { editUser, deleteUser } from "../API/API";
@@ -60,9 +60,8 @@ function Edit() {
   };
 
   return (
-    <div>
-      Edit
-      <form onSubmit={handleSubmit}>
+    <div className="edit-container">
+      <form className="edit-form" onSubmit={handleSubmit}>
         <input
           type="name"
           placeholder="username"
@@ -75,10 +74,13 @@ function Edit() {
           value={password_hash}
           onChange={(e) => setPassword(e.target.value)}
         />
-
-        <button>Submit</button>
+        <div className="button-container">
+          <button type="submit">Submit</button>
+          <button className="delete-button" onClick={handleDelete}>
+            Delete
+          </button>
+        </div>
       </form>
-      <button onClick={handleDelete}> delete </button>
     </div>
   );
 }
