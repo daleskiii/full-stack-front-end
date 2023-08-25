@@ -76,11 +76,11 @@ function Edit() {
         />
         <div className="button-container">
           <button type="submit">Submit</button>
-          <button className="delete-button" onClick={handleDelete}>
-            Delete
-          </button>
         </div>
       </form>
+      <button className="delete-button" onClick={handleDelete}>
+        Delete
+      </button>
     </div>
   );
 }
