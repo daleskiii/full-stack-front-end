@@ -19,14 +19,14 @@ function Orders() {
           // );
 
           const response = await getOrderByUser(userId);
-          // console.log(response.data);
+          console.log(response.data);
           setData(response.data);
           // console.log(response.data);
           // const quantity = response.data.order_quantity;
           // console.log(quantity);
 
           const quantity = response.data.map((i) => i.order_quantity);
-          console.log(quantity);
+          // console.log(quantity);
           const calaculatedQuantity = quantity.reduce(
             (acc, order) => order + acc,
             0
@@ -34,7 +34,7 @@ function Orders() {
           // console.log(calaculatedQuantity);
 
           setCartQuant(calaculatedQuantity);
-          console.log(cartQuant);
+          // console.log(cartQuant);
         }
       } catch (error) {
         console.error("Error fetching orders:");
@@ -80,6 +80,11 @@ function Orders() {
           <p>Product: {order.product_name}</p>
           <p>Quantity:{order.order_quantity} </p>
           <p>Price: $ {order.product_price}</p>
+          <img
+            className="product-image"
+            src={order.image_url}
+            alt={order.product_name}
+          />
           <button onClick={() => removeFromCart(order.order_id)}>
             Remove item from cart
           </button>
